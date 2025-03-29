@@ -73,6 +73,7 @@ class CIDNet(nn.Module, PyTorchModelHubMixin):
         
     def forward(self, x):
         dtypes = x.dtype
+        print(x.shape)
         x = self.retinex(x)
         hvi = self.trans.HVIT(x)
         i = hvi[:,2,:,:].unsqueeze(1).to(dtypes)
