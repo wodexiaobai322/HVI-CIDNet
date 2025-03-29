@@ -4,6 +4,7 @@ from net.HVI_transform import RGB_HVI
 from net.transformer_utils import *
 from net.LCA import *
 from huggingface_hub import PyTorchModelHubMixin
+from net.Retinex import Illumination_Estimator
 
 class CIDNet(nn.Module, PyTorchModelHubMixin):
     def __init__(self, 
@@ -67,9 +68,12 @@ class CIDNet(nn.Module, PyTorchModelHubMixin):
         self.I_LCA6 = I_LCA(ch2, head2)
         
         self.trans = RGB_HVI()
+
+        self.retinex = Illumination_Estimator(40)
         
     def forward(self, x):
         dtypes = x.dtype
+        x = self.retinex(x)
         hvi = self.trans.HVIT(x)
         i = hvi[:,2,:,:].unsqueeze(1).to(dtypes)
         # low
@@ -124,6 +128,10 @@ class CIDNet(nn.Module, PyTorchModelHubMixin):
     def HVIT(self,x):
         hvi = self.trans.HVIT(x)
         return hvi
+
+# if __name__ == '__main__':
+#     input = torch.randn(1, 3, 256, 256)
+#     test = CIDNet(input)
     
     
 
