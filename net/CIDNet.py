@@ -13,7 +13,8 @@ class CIDNet(nn.Module, PyTorchModelHubMixin):
                  norm=False
         ):
         super(CIDNet, self).__init__()
-        
+
+        self.retinex = Illumination_Estimator(40)
         
         [ch1, ch2, ch3, ch4] = channels
         [head1, head2, head3, head4] = heads
@@ -69,7 +70,7 @@ class CIDNet(nn.Module, PyTorchModelHubMixin):
         
         self.trans = RGB_HVI()
 
-        self.retinex = Illumination_Estimator(40)
+
         
     def forward(self, x):
         dtypes = x.dtype
