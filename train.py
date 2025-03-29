@@ -76,7 +76,7 @@ def train(epoch):
         pic_cnt += 1
         pic_last_10 += 1
         if iter == train_len:
-            print(pic_last_10)
+            print("pic",pic_last_10,"\n")
             print("===> Epoch[{}]: Loss: {:.4f} || Learning rate: lr={}.".format(epoch,
                 loss_last_10/pic_last_10, optimizer.param_groups[0]['lr']))
             loss_last_10 = 0
