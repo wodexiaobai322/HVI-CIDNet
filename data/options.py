@@ -8,7 +8,7 @@ def option():
     parser.add_argument('--nEpochs', type=int, default=500, help='number of epochs to train for end')
     parser.add_argument('--start_epoch', type=int, default=0, help='number of epochs to start, >0 is retrained a pre-trained pth')
     parser.add_argument('--snapshots', type=int, default=10, help='Snapshots for save checkpoints pth')
-    parser.add_argument('--lr', type=float, default=1e-4, help='Learning Rate')
+    parser.add_argument('--lr', type=float, default=1e-6, help='Learning Rate')
     parser.add_argument('--gpu_mode', type=bool, default=True)
     parser.add_argument('--shuffle', type=bool, default=True)
     parser.add_argument('--threads', type=int, default=16, help='number of threads for dataloader to use')
@@ -50,11 +50,19 @@ def option():
     parser.add_argument('--val_folder', default='./results/', help='Location to save validation datasets')
 
     # loss weights
-    parser.add_argument('--HVI_weight', type=float, default=1.0)
+    # parser.add_argument('--HVI_weight', type=float, default=1.0)
+    parser.add_argument('--HVI_weight', type=float, default=0.5)
+
     parser.add_argument('--L1_weight', type=float, default=1.0)
     parser.add_argument('--D_weight',  type=float, default=0.5)
     parser.add_argument('--E_weight',  type=float, default=50.0)
-    parser.add_argument('--P_weight',  type=float, default=1e-2)
+    # parser.add_argument('--P_weight',  type=float, default=1e-2)
+    parser.add_argument('--P_weight',  type=float, default=0.0)
+
+    # parser.add_argument('--L1_weight', type=float, default=0.0)
+    # parser.add_argument('--D_weight', type=float, default=0.0)
+    # parser.add_argument('--E_weight', type=float, default=0.0)
+    # parser.add_argument('--P_weight', type=float, default=1e-2)
     
     # use random gamma function (enhancement curve) to improve generalization
     parser.add_argument('--gamma', type=bool, default=False)
