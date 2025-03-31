@@ -88,7 +88,8 @@ if __name__ == '__main__':
     norm_size = True
     num_workers = 1
     alpha = None
-    if ep.lol:
+    # if ep.lol:
+    if True:
         eval_data = DataLoader(dataset=get_eval_set("./datasets/LOLdataset/eval15/low"), num_workers=num_workers, batch_size=1, shuffle=False)
         output_folder = './output/LOLv1/'
         if ep.perc:
