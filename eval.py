@@ -35,7 +35,7 @@ eval_parser.add_argument('--unpaired_weights', type=str, default='./weights/LOLv
 ep = eval_parser.parse_args()
 
 
-def eval(model, testing_data_loader, model_path, output_folder,norm_size=True,LOL=False,v2=False,unpaired=False,alpha=1.0,gamma=1.0):
+def eval(model, testing_data_loader, model_path, output_folder,norm_size=True,LOL=True,v2=False,unpaired=False,alpha=1.0,gamma=1.0):
     torch.set_grad_enabled(False)
     model.load_state_dict(torch.load(model_path, map_location=lambda storage, loc: storage))
     print('Pre-trained model is loaded.')
